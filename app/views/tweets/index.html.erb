@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        rel="stylesheet"
+      />
+      <!-- Google Fonts -->
+      <link
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+        rel="stylesheet"
+      />
+      <!-- MDB -->
+      <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css"
+        rel="stylesheet"
+      />
+    <title>Accueil</title>
+  </head>
+  <body>
+
+
+
+    <div class="container mt-44">
+        <h2 class="text-center mb-8">Les dernières tweets</h2>
+      <div class="row mt-48">
+
+        <div class="col-md-1">
+
+        </div>
+
+        <div class="col-md-10">
+
+          <div class="row mb-5">
+            <% @tweets.each do |tweet| %>
+              <div class="col-md-4">
+
+                <div class="card text-center mt-8">
+
+                  <div class="card-header">Title of tweet :<%= tweet.Title %></div>
+
+                  <div class="card-body">
+                    <p class="card-text">Content : <%= tweet.Content %></p>
+                    <p class="card-text">Written by : <%= tweet.user.email %></p>
+
+                  </div>
+
+                  <div class="card-footer text-muted">
+                    <%= link_to 'Show', tweet %> |
+                    <%= link_to 'Edit', edit_tweet_path(tweet) %> |
+                    <%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %>
+                  </div>
+
+                </div>
+
+              </div>
+         <% end %>
+
+
+
+          </div>
+
+
+        </div>
+
+        <div class="col-md-1">
+
+        </div>
+
+
+      </div>
+
+    </div>
+    <div class="container text-center">
+      <button type="button" name="button" class="btn btn-info"><a href="/tweets/new">New Tweet</a></button>
+    </div>
+
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"
+    ></script>
+  </body>
+</html>

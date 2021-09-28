@@ -23,6 +23,9 @@ class TweetsController < ApplicationController
     @tweet = Tweet.new
   end
 
+  def confirm
+    @tweet = Tweet.new(tweet_params)
+  end
   # GET /tweets/1/edit
   def edit
   end
@@ -56,7 +59,17 @@ class TweetsController < ApplicationController
   end
 
   # DELETE /tweets/1 or /tweets/1.json
+
+  def delete_post
+    connection.execute("DELETE FROM tweets WHERE tweets.id = ?", params['id'])
+
+    redirect_to '/'
+  end
+
+
   def destroy
+    @tweet = Tweet.find(params[:id])
+
     @tweet.destroy
     respond_to do |format|
       format.html { redirect_to tweets_url, notice: "Tweet was successfully destroyed." }
@@ -65,12 +78,10 @@ class TweetsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_tweet
       @tweet = Tweet.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def tweet_params
       params.require(:tweet).permit(:Title, :Content)
     end

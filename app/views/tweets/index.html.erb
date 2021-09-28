@@ -34,7 +34,7 @@
 
           <div class="row mb-5">
             <% @tweets.each do |tweet| %>
-              <div class="col-md-4">
+              <div class="col-md-4 mb-5">
 
                 <div class="card text-center mt-8">
 
@@ -49,7 +49,8 @@
                   <div class="card-footer text-muted">
                     <%= link_to 'Show', tweet %> |
                     <%= link_to 'Edit', edit_tweet_path(tweet) %> |
-                    <%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <%= link_to 'Destroy', destroy_path(tweet['id']), :method => :delete, :confirm => "Are you sure?" %>
+
                   </div>
 
                 </div>
@@ -72,8 +73,12 @@
       </div>
 
     </div>
-    <div class="container text-center">
+    <div class="container text-center ">
       <button type="button" name="button" class="btn btn-info"><a href="/tweets/new">New Tweet</a></button>
+    </div>
+
+    <div class="container text-center mb-5">
+
     </div>
 
     <script

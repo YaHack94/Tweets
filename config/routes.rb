@@ -4,6 +4,8 @@ Rails.application.routes.draw do
    get '/users/sign_out' => 'devise/sessions#destroy'
   end
   resources :tweets
+  post 'tweets/confirm', to: 'tweets#confirm', as: 'confirm'
+  delete '/tweets/:id', to: 'tweets#destroy', as: 'destroy'
   root 'tweets#index'
   get '/exemple', to: 'tweets#base'
 end
